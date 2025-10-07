@@ -12,9 +12,10 @@ springdoc:
 
 logging:
   file:
-    name: "./@project.name@.log"
+    name: logs/app.log
+    path: logs
   level:
-    root: "INFO"
+    root: "DEBUG"
     org:
       springframework:
-        web: "INFO"
+        web: "DEBUG"
