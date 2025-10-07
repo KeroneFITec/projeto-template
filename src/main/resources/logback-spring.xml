@@ -5,6 +5,7 @@
     <springProperty scope="context" name="LOG_PATH" source="logging.file.name"/>
 
     <appender name="LOGSTASH" class="net.logstash.logback.appender.LogstashTcpSocketAppender">
+        <!-- <file>${LOG_FILE_NAME}</file> -->
         <destination>logstash:5000</destination>
         <encoder class="net.logstash.logback.encoder.LogstashEncoder">
 			<prefix class="ch.qos.logback.core.encoder.LayoutWrappingEncoder">
@@ -22,7 +23,7 @@
       <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} -%kvp- %msg%n</pattern>
     </encoder>
   </appender> -->
-    <root level="DEBUG">
+    <root level="INFO">
         <appender-ref ref="LOGSTASH"/>
     </root>
     <logger name="nome-do-projeto" level="INFO" />
