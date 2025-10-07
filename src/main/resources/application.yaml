@@ -12,8 +12,7 @@ springdoc:
 
 logging:
   file:
-    name: logs/app.log
-    path: logs
+    name: app.log
   level:
     root: "DEBUG"
     org:
