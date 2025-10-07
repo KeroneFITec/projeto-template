@@ -18,7 +18,7 @@ jobs:
     steps:
       - name: Clonar projeto template
         run: |
-          git clone git@github.com:KeroneFITec/projeto-template.git projeto-template
+          git clone https://github.com/KeroneFITec/projeto-template.git projeto-template
 
       - name: Substituir placeholders no projeto
         working-directory: projeto-template
