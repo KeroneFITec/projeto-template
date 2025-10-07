@@ -18,17 +18,17 @@ jobs:
     steps:
       - name: Clonar projeto template
         run: |
-          git clone ${{ github.event.inputs.repositorio_modelo }} projeto-modelo
+          git clone git@github.com:KeroneFITec/projeto-template.git projeto-template
 
       - name: Substituir placeholders no projeto
-        working-directory: projeto-modelo
+        working-directory: projeto-template
         run: |
           find . -type f -exec sed -i "s/com.exemplo.modelo/${{ github.event.inputs.pacote_base }}/g" {} +
           find . -type f -exec sed -i "s/nome-do-projeto/${{ github.event.inputs.nome_projeto }}/g" {} +
 
       - name: Renomear diretório do projeto
         run: |
-          mv projeto-modelo ${{ github.event.inputs.nome_projeto }}
+          mv projeto-template ${{ github.event.inputs.nome_projeto }}
 
       - name: Compactar projeto em .zip
         run: |
