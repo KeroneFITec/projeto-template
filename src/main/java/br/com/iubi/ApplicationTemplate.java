@@ -1,0 +1,13 @@
+package br.com.iubi;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class ApplicationTemplate {
+
+	public static void main(String[] args) {
+		SpringApplication.run(ApplicationTemplate.class, args);
+	}
+
+}

@@ -1,0 +1,41 @@
+
+name: Gerar Estrutura de Micro Serviço
+
+on:
+  workflow_dispatch:
+    inputs:
+      nome_projeto:
+        description: 'Nome do projeto'
+        required: true
+      pacote_base:
+        description: 'Pacote base (ex: com.exemplo.app)'
+        required: true
+
+jobs:
+  gerar-e-zipar:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Clonar projeto template
+        run: |
+          git clone ${{ github.event.inputs.repositorio_modelo }} projeto-modelo
+
+      - name: Substituir placeholders no projeto
+        working-directory: projeto-modelo
+        run: |
+          find . -type f -exec sed -i "s/com.exemplo.modelo/${{ github.event.inputs.pacote_base }}/g" {} +
+          find . -type f -exec sed -i "s/nome-do-projeto/${{ github.event.inputs.nome_projeto }}/g" {} +
+
+      - name: Renomear diretório do projeto
+        run: |
+          mv projeto-modelo ${{ github.event.inputs.nome_projeto }}
+
+      - name: Compactar projeto em .zip
+        run: |
+          zip -r ${{ github.event.inputs.nome_projeto }}.zip ${{ github.event.inputs.nome_projeto }}
+
+      - name: Disponibilizar .zip como artefato
+        uses: actions/upload-artifact@v4
+        with:
+          name: projeto-${{ github.event.inputs.nome_projeto }}
+          path: ${{ github.event.inputs.nome_projeto }}.zip

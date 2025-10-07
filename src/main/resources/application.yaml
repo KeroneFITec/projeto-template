@@ -1,0 +1,20 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: "@project.name@"
+    version: "@project.version@"
+
+springdoc:
+ swagger-ui:
+   path: "/swagger-ui.html"
+
+logging:
+  file:
+    name: "./@project.name@.log"
+  level:
+    root: "INFO"
+    org:
+      springframework:
+        web: "INFO"

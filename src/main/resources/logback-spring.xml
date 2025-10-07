@@ -1,0 +1,21 @@
+<?xml-model href=""?>
+
+<configuration>
+    <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
+    <springProperty scope="context" name="LOG_PATH" source="logging.file.name"/>
+
+    <appender name="LOGSTASH" class="net.logstash.logback.appender.LogstashTcpSocketAppender">
+        <destination>logstash:5000</destination>
+        <encoder class="net.logstash.logback.encoder.LogstashEncoder">
+			<prefix class="ch.qos.logback.core.encoder.LayoutWrappingEncoder">
+		        <layout class="ch.qos.logback.classic.PatternLayout">
+		            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+		        </layout>
+		    </prefix>
+	   </encoder>        
+    </appender>
+
+    <root level="DEBUG">
+        <appender-ref ref="LOGSTASH"/>
+    </root>
+</configuration>
